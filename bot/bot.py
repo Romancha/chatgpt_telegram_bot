@@ -94,7 +94,7 @@ async def register_user_if_not_exists(update: Update, context: CallbackContext, 
     n_used_tokens = db.get_user_attribute(user.id, "n_used_tokens")
     if isinstance(n_used_tokens, int) or isinstance(n_used_tokens, float):  # old format
         new_n_used_tokens = {
-            "gpt-3.5-turbo": {
+            "gpt-4.1-mini": {
                 "n_input_tokens": 0,
                 "n_output_tokens": n_used_tokens
             }
@@ -185,9 +185,9 @@ async def _vision_message_handle_fn(
     user_id = update.message.from_user.id
     current_model = db.get_user_attribute(user_id, "current_model")
 
-    if current_model != "gpt-4-vision-preview" and current_model != "gpt-4o":
+    if current_model != "gpt-4o":
         await update.message.reply_text(
-            "🥲 Images processing is only available for <b>gpt-4-vision-preview</b> and <b>gpt-4o</b> model. Please change your settings in /settings",
+            "🥲 Images processing is only available for <b>gpt-4o</b> model. Please change your settings in /settings",
             parse_mode=ParseMode.HTML,
         )
         return
@@ -459,12 +459,12 @@ async def message_handle(update: Update, context: CallbackContext, message=None,
             await update.message.reply_text(text, parse_mode=ParseMode.HTML)
 
     async with user_semaphores[user_id]:
-        if current_model == "gpt-4-vision-preview" or current_model == "gpt-4o" or update.message.photo is not None and len(update.message.photo) > 0:
+        if current_model == "gpt-4o" or update.message.photo is not None and len(update.message.photo) > 0:
 
             logger.error(current_model)
             # What is this? ^^^
 
-            if current_model != "gpt-4o" and current_model != "gpt-4-vision-preview":
+            if current_model != "gpt-4o":
                 current_model = "gpt-4o"
                 db.set_user_attribute(user_id, "current_model", "gpt-4o")
             task = asyncio.create_task(
@@ -566,7 +566,7 @@ async def new_dialog_handle(update: Update, context: CallbackContext):
 
     user_id = update.message.from_user.id
     db.set_user_attribute(user_id, "last_interaction", datetime.now())
-    db.set_user_attribute(user_id, "current_model", "gpt-3.5-turbo")
+    db.set_user_attribute(user_id, "current_model", "gpt-4.1-mini")
 
     db.start_new_dialog(user_id)
     await update.message.reply_text("Starting new dialog ✅")
@@ -759,9 +759,9 @@ async def show_balance_handle(update: Update, context: CallbackContext):
         details_text += f"- {model_key}: <b>{n_input_spent_dollars + n_output_spent_dollars:.03f}$</b> / <b>{n_input_tokens + n_output_tokens} tokens</b>\n"
 
     # image generation
-    image_generation_n_spent_dollars = config.models["info"]["dalle-2"]["price_per_1_image"] * n_generated_images
+    image_generation_n_spent_dollars = config.models["info"]["dalle-3"]["price_per_1_image"] * n_generated_images
     if n_generated_images != 0:
-        details_text += f"- DALL·E 2 (image generation): <b>{image_generation_n_spent_dollars:.03f}$</b> / <b>{n_generated_images} generated images</b>\n"
+        details_text += f"- DALL·E 3 (image generation): <b>{image_generation_n_spent_dollars:.03f}$</b> / <b>{n_generated_images} generated images</b>\n"
 
     total_n_spent_dollars += image_generation_n_spent_dollars
 
