@@ -1,4 +1,4 @@
-# ChatGPT Telegram Bot: **GPT-4. Fast. No daily limits. Special chat modes**
+# ChatGPT Telegram Bot: **GPT-4.1. Fast. No daily limits. Special chat modes**
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/karfly/chatgpt_telegram_bot/main/static/header.png" align="center" style="width: 100%" />
@@ -21,10 +21,10 @@ You can deploy your own bot, or use mine: [@chatgpt_karfly_bot](https://t.me/cha
 - Low latency replies (it usually takes about 3-5 seconds)
 - No request limits
 - Message streaming (watch demo)
-- GPT-4 and GPT-4 Turbo support
-- GPT-4 Vision support
+- **GPT-4.1, GPT-4.1 Mini, GPT-4.1 Nano** and **GPT-4o** support
+- GPT-4o Vision support (image understanding and analysis)
 - Group Chat support (/help_group_chat to get instructions)
-- DALLE 2 (choose 👩‍🎨 Artist mode to generate images)
+- DALLE 3 (choose 👩‍🎨 Artist mode to generate images)
 - Voice message recognition
 - Code highlighting
 - 15 special chat modes: 👩🏼‍🎓 Assistant, 👩🏼‍💻 Code Assistant, 👩‍🎨 Artist, 🧠 Psychologist, 🚀 Elon Musk and other. You can easily create your own chat modes by editing `config/chat_modes.yml`
@@ -39,8 +39,9 @@ You can deploy your own bot, or use mine: [@chatgpt_karfly_bot](https://t.me/cha
 ---
 
 ## News
+- *29 May 2025*: **GPT-4.1 family support** - Added support for GPT-4.1, GPT-4.1 Mini, and GPT-4.1 Nano models with improved performance and cost efficiency
 - *21 Apr 2023*:
-    - DALLE 2 support
+    - DALLE 3 support (upgraded from DALLE 2)
     - Group Chat support (/help_group_chat to get instructions)
     - 10 new hot chat modes and updated chat mode menu with pagination: 🇬🇧 English Tutor, 🧠 Psychologist, 🚀 Elon Musk, 📊 SQL Assistant and other.
 - *24 Mar 2023*: GPT-4 support. Run `/settings` command to choose model
@@ -50,7 +51,19 @@ You can deploy your own bot, or use mine: [@chatgpt_karfly_bot](https://t.me/cha
 - *2 Mar 2023*: Added support of [ChatGPT API](https://platform.openai.com/docs/guides/chat/introduction).
 - *1 Aug 2023*: Added OpenAI API Base to config (useful while using OpenAI-compatible API like [LocalAI](https://github.com/go-skynet/LocalAI))
 - *15 Nov 2023*: Added support of [GPT-4 Turbo](https://help.openai.com/en/articles/8555510-gpt-4-turbo)
-- *2 Apt 2024*: Added [GPT-4 Vision](https://platform.openai.com/docs/guides/vision) support
+- *2 Apt 2024*: Added [GPT-4o Vision](https://platform.openai.com/docs/guides/vision) support
+
+## Available Models
+
+### GPT-4.1 Family
+- **GPT-4.1** - The flagship model, designed for maximum coding and instruction-following performance
+- **GPT-4.1 Mini** - A fast, more compact model that still maintains impressive coding and instruction-following capabilities
+- **GPT-4.1 Nano** - The smallest and fastest, optimized for tasks requiring extremely low latency
+
+### GPT-4o
+- **GPT-4o** - Advanced multimodal model with vision capabilities for image understanding and analysis
+
+All models support message streaming and can be easily switched via `/settings` command.
 
 ## Bot commands
 - `/retry` – Regenerate last bot answer
